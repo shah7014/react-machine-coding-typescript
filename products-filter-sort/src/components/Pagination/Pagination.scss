@@ -1,0 +1,38 @@
+.pagination {
+  margin: 1rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__prev-btn,
+  &__next-btn {
+    padding: 0.5rem 0.25rem;
+    border: none;
+    background-color: aquamarine;
+    cursor: pointer;
+  }
+
+  &__pages {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__page-btn {
+    background-color: #c1c1c1;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+
+  &__page-btn--selected {
+    background-color: #000;
+    color: #fff;
+  }
+}
