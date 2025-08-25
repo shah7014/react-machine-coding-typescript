@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -14,6 +15,8 @@ import {
   SortDir,
   SortKey,
 } from "../types/Product";
+import { debounce } from "../../../utils/debounce";
+import useDebounce from "../../../hooks/useDebounce";
 
 type ProductsContextType = {
   filteredProducts: Product[];
@@ -94,6 +97,12 @@ export const ProductContextProvider: React.FC<{
       });
   }, [allProducts, filter, sortKey, sortDir]);
 
+  const handleTitleChange = useCallback((title: string) => {
+    setFilter((prev) => ({ ...prev, title }));
+  }, []);
+
+  const debouncedTitleFilter = useDebounce(handleTitleChange, 1000);
+
   const handleFilterChange = (
     filterType: FilterKeys,
     filterValue: string | { min?: number; max?: number }
@@ -101,7 +110,8 @@ export const ProductContextProvider: React.FC<{
     if (filterType === "category") {
       setFilter((prev) => ({ ...prev, category: filterValue as string }));
     } else if (filterType === "title") {
-      setFilter((prev) => ({ ...prev, title: filterValue as string }));
+      // setFilter((prev) => ({ ...prev, title: filterValue as string }));
+      debouncedTitleFilter(filterValue);
     } else if (filterType === "price") {
       setFilter((prev) => ({
         ...prev,
