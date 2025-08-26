@@ -1,0 +1,42 @@
+.applayout {
+  width: 90%;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  .header {
+    background-color: aquamarine;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__navlist {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      list-style: none;
+
+      &-item {
+        a {
+          color: black;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  main {
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+.active {
+  color: green !important;
+}
